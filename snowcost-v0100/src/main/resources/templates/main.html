@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <META HTTP-EQUIV="Content-Type" Content="text/html; Charset=iso-8859-2">
+    <META HTTP-EQUIV="Content-Language" Content="hu">
+    <meta charset="UTF-8">
+    <meta name="viewport" address="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" address="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<h1>Prices</h1>
+
+<div>
+    <form action="/add" th:object="${accomodation}" method="post">
+        <input hidden th:field="*{id}">
+
+        <div>
+            <label>Szallas:</label>
+            <span><input type="number" style="width: 8em" required th:name="priceAccomodation" th:field="*{priceAccomodation}"> Ft/fo/ej,</span>
+            <span><input type="number" style="width: 3em" required th:name="headAccomodation" th:field="*{headAccomodation}"> fo,</span>
+            <span><input type="number" style="width: 3em; white-space: normal" required th:name="nightAccomodation" th:field="*{nightAccomodation}"> ej</span>
+        </div>
+
+        <div>
+            <label>Siberlet:</label>
+            <span><input type="number" style="width: 8em" required th:name="priceSkiTicket" th:field="*{priceSkiTicket}"> Ft/fo,</span>
+            <span><input type="number" style="width: 3em; white-space: normal" required th:name="headSkiTicket" th:field="*{headSkiTicket}"> fo</span>
+        </div>
+
+        <div>
+            <label>Uzemanyagkoltseg:</label>
+            <span><input type="number" step="0.01" style="width: 8em" required th:name="distanceFuel" th:field="*{distanceFuel}"> km,</span>
+            <span><input type="number" step="0.01" style="width: 4em" required th:name="consumptionFuel" th:field="*{consumptionFuel}"> liter/100km,</span>
+            <span><input type="number" step="0.01" style="width: 4em; white-space: normal" required th:name="priceFuel" th:field="*{priceFuel}"> Ft</span>
+        </div>
+
+        <div>
+            <label>Ski rent</label>
+            <input type="number" required th:name="costSkiRent" th:value="*{costSkiRent}" style="white-space: normal">
+        </div>
+
+        <div>
+            <label>Insurance</label>
+            <input type="number" required th:name="costInsurance" th:value="*{costInsurance}" style="white-space: normal">
+        </div>
+
+        <div>
+            <label>Spending money</label>
+            <input type="number" required th:name="spendingMoney" th:value="*{spendingMoney}" style="white-space: normal">
+        </div>
+
+        <div>
+            <label>Other costs</label>
+            <input type="number" required th:name="otherCost" th:value="*{otherCost}"style="white-space: normal">
+        </div>
+
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+<h2>Summary</h2>
+<p th:text="'Szallas: ' +
+    ${accomodation.priceAccomodation} + ' Ft/fo/ej, ' +
+    ${accomodation.headAccomodation} + ' fo, ' +
+    ${accomodation.nightAccomodation} + ' ej = ' +
+    ${multiplyAccomodation} + ' Ft'" style="white-space: normal">
+</p>
+<p th:text="'Siberlet: ' +
+    ${accomodation.priceSkiTicket} + ' Ft/fo, ' +
+    ${accomodation.headSkiTicket} + ' fo = ' +
+    ${multiplySkiTicket} + ' Ft'" style="white-space: normal"></p>
+<p th:text="'Uzemanyagkoltseg: ' +
+    ${accomodation.distanceFuel} + ' km, ' +
+    ${accomodation.consumptionFuel} + ' liter/100km, ' +
+    ${accomodation.priceFuel} + ' Ft = ' +
+    ${fuelCalc} + ' Ft'" style="white-space: normal"></p>
+<p th:text="'Ski rent: ' + ${accomodation.costSkiRent}" style="white-space: normal"></p>
+<p th:text="'Insurance: ' + ${accomodation.costInsurance}" style="white-space: normal"></p>
+<p th:text="'Spending money: ' + ${accomodation.spendingMoney}" style="white-space: normal"></p>
+<p th:text="'Other costs: ' + ${accomodation.otherCost}" style="white-space: normal"></p>
+<p th:text="'SUM: ' + ${sum}"></p>
+</body>
+</html>
