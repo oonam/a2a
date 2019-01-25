@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" address="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" address="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<h1>Prices</h1>
+<form action="/add" th:object="${accomodation}" method="post">
+    <input hidden th:field="*{id}">
+    <label>Accomodation</label>
+    <input type="number" required th:name="priceAccomodation" th:field="*{priceAccomodation}">
+    <label>Ski ticket</label>
+    <input type="number" required th:name="priceSkiTicket" th:field="*{priceSkiTicket}">
+    <label>Fuel cost</label>
+    <input type="number" required th:name="costFuel" th:field="*{costFuel}">
+    <label>Ski rent</label>
+    <input type="number" required th:name="costSkiRent" th:value="*{costSkiRent}">
+    <label>Insurance</label>
+    <input type="number" required th:name="costInsurance" th:value="*{costInsurance}">
+    <label>Spending money</label>
+    <input type="number" required th:name="spendingMoney" th:value="*{spendingMoney}">
+    <label>Other costs</label>
+    <input type="number" required th:name="otherCost" th:value="*{otherCost}">
+    <button type="submit">Submit</button>
+</form>
+
+<h2>Summary</h2>
+<p th:text="'Accomodation: ' + ${accomodation.priceAccomodation}"></p>
+<p th:text="'Ski ticket: ' + ${accomodation.priceSkiTicket}"></p>
+<p th:text="'Fuel cost: ' + ${accomodation.costFuel}"></p>
+<p th:text="'Ski rent: ' + ${accomodation.costSkiRent}"></p>
+<p th:text="'Insurance: ' + ${accomodation.costInsurance}"></p>
+<p th:text="'Spending money: ' + ${accomodation.spendingMoney}"></p>
+<p th:text="'Other costs: ' + ${accomodation.otherCost}"></p>
+<p th:text="'SUM: ' + ${sum}"></p>
+</body>
+</html>
